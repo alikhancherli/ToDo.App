@@ -1,12 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ToDo.App.Domain.Enums;
+using ToDo.App.Domain.Events;
+using ToDo.App.Shared.Domain;
 
 namespace ToDo.App.Domain.Entities
 {
-    public sealed class ToDoList
+    public sealed class ToDoList : AggregateRoot<int>
     {
+        public string Title { get; private set; } = default!;
+        public Tag Tag { get; private set; }
+        public IEnumerable<ToDoItem> ToDoItems { get; private set; } = Enumerable.Empty<ToDoItem>();
+
+        public ToDoList(
+            string title,
+            Tag tag,
+            IList<ToDoItem> toDoItems)
+        {
+            Create(title, tag, toDoItems);
+        }
+
+        private void Create(
+            string title,
+            Tag tag,
+            IList<ToDoItem> toDoItems)
+        {
+            Title = title;
+            Tag = tag;
+            ToDoItems = toDoItems;
+
+            AddEvent(new TodoHasCreatedEvent());
+        }
+
+        public void Edit(
+            string title,
+            Tag tag,
+            IList<ToDoItem> toDoItems)
+        {
+            Title = title;
+            Tag = tag;
+            ToDoItems = toDoItems;
+
+            ModifiedTimeUtc = DateTimeOffset.UtcNow;
+            AddEvent(new TodoHasUpdatedEvent());
+        }
     }
 }

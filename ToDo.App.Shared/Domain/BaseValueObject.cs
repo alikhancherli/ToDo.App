@@ -76,35 +76,5 @@ namespace ToDo.App.Shared.Domain
 
             return fields;
         }
-
-        public override int GetHashCode()
-        {
-            unchecked   //allow overflow
-            {
-                int hash = 17;
-                foreach (var prop in GetProperties())
-                {
-                    var value = prop.GetValue(this, null);
-                    hash = HashValue(hash, value);
-                }
-
-                foreach (var field in GetFields())
-                {
-                    var value = field.GetValue(this);
-                    hash = HashValue(hash, value);
-                }
-
-                return hash;
-            }
-        }
-
-        private int HashValue(int seed, object? value)
-        {
-            var currentHash = value != null
-                ? value.GetHashCode()
-                : 0;
-
-            return seed * 23 + currentHash;
-        }
     }
 }
