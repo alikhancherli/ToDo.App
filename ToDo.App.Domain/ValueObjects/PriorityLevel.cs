@@ -9,7 +9,7 @@ namespace ToDo.App.Domain.ValueObjects
 
         public PriorityLevel(byte value)
         {
-            if (value < 0)
+            if (value < 1)
                 throw new ValueIsOutOfRange(value);
 
             Value = value;
