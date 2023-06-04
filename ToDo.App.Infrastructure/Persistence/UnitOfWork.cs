@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using ToDo.App.Domain.Repositories;
 using ToDo.App.Domain.Repositories.UnitOfWork;
+using ToDo.App.Infrastructure.Persistence.Repositories;
 using ToDo.App.Shared.Domain;
 
 namespace ToDo.App.Infrastructure.Persistence
@@ -9,6 +11,7 @@ namespace ToDo.App.Infrastructure.Persistence
     {
         private readonly AppDbContext _context;
 
+        private ITodoRepository _todoRepository;
 
         private readonly IMediator _mediator;
 
@@ -20,6 +23,9 @@ namespace ToDo.App.Infrastructure.Persistence
             _context = context;
             _mediator = mediator;
         }
+
+        public ITodoRepository TodoRepository =>
+            _todoRepository ??= new TodoRepository(_context);
 
         public void Save()
         {
