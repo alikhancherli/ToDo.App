@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ToDo.App.Domain.Entities;
 using ToDo.App.Infrastructure.Options;
+using ToDo.App.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,7 +64,7 @@ builder.Services.AddIdentity<User, Role>(opt =>
     opt.Password.RequireDigit = false;
     opt.Password.RequireLowercase = false;
     opt.Password.RequireUppercase = false;
-});//TODO : .AddEntityFrameworkStores<ApplicationDbContext>();
+}).AddEntityFrameworkStores<AppDbContext>();
 
 
 var app = builder.Build();
