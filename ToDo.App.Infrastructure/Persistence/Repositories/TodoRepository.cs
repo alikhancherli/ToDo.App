@@ -15,6 +15,11 @@ namespace ToDo.App.Infrastructure.Persistence.Repositories
             _context = context;
         }
 
+        public async Task AddAsync(ToDoList toDoList)
+        {
+            await _context.TodoLists.AddAsync(toDoList);
+        }
+
         public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
         {
             var todo = await GetAsync(id, cancellationToken);

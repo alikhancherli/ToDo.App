@@ -15,6 +15,10 @@ public class ResultHandler<TResult>
         get { return _message; }
     }
 
+    public ResultHandler()
+    {
+
+    }
 
     public ResultHandler(TResult result)
     {

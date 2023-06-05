@@ -10,5 +10,6 @@ namespace ToDo.App.Domain.Repositories
         Task<IList<ToDoList>> GetListAsync(Expression<Func<ToDoList, bool>> predicate, CancellationToken cancellationToken);
         Task<bool> UpdateAsync(ToDoList toDoList);
         Task<bool> DeleteAsync(int id, CancellationToken cancellationToken);
+        Task AddAsync(ToDoList toDoList);
     }
 }

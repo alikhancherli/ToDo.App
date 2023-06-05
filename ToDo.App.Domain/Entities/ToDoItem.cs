@@ -9,6 +9,7 @@ namespace ToDo.App.Domain.Entities
         public string Note { get; private set; } = default!;
         public DateTimeOffset? Reminder { get; private set; }
         public PriorityLevel PriorityLevel { get; private set; } = default!;
+        public bool Done { get; set; } = false;
 
         private ToDoItem()
         {
@@ -39,5 +40,7 @@ namespace ToDo.App.Domain.Entities
             PriorityLevel = priorityLevel;
             ModifiedTimeUtc = DateTimeOffset.UtcNow;
         }
+
+        public void DoneItem() => this.Done = true;
     }
 }

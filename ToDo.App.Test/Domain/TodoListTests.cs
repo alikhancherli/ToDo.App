@@ -16,7 +16,7 @@ namespace ToDo.App.Test.Domain
             Tag Tagtype = Tag.Entertainment;
             ToDoItem todoItem = ToDoItem.Create("", "", null, new PriorityLevel(1));
             //Act
-            var todo = new ToDoList(Title, Tagtype, new[] { todoItem });
+            var todo = new ToDoList(Title, Tagtype, 1, new[] { todoItem });
             //Assert
             Assert.Equal(todo.Title, Title);
             Assert.Equal(todo.Tag, Tagtype);
