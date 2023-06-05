@@ -11,6 +11,8 @@ namespace ToDo.App.Domain.Entities
         public int UserId { get; private set; }
         public IEnumerable<ToDoItem> ToDoItems { get; private set; } = Enumerable.Empty<ToDoItem>();
 
+        private ToDoList() { }
+
         public ToDoList(
             string title,
             Tag tag,

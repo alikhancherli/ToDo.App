@@ -4,7 +4,7 @@ using ToDo.App.Domain.Entities;
 
 namespace ToDo.App.Infrastructure.Persistence
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<User, Role, int>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
