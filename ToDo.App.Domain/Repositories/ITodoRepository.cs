@@ -9,7 +9,8 @@ namespace ToDo.App.Domain.Repositories
         ValueTask<ToDoList?> GetAsync(int id, CancellationToken cancellationToken);
         Task<IList<ToDoList>> GetListAsync(Expression<Func<ToDoList, bool>> predicate, CancellationToken cancellationToken);
         Task<bool> UpdateAsync(ToDoList toDoList);
-        Task<bool> DeleteAsync(int id, CancellationToken cancellationToken);
+        ValueTask<bool> DeleteAsync(int id, CancellationToken cancellationToken);
+        ValueTask<bool> DeleteAsync(ToDoList toDoList, CancellationToken cancellationToken);
         Task AddAsync(ToDoList toDoList);
     }
 }

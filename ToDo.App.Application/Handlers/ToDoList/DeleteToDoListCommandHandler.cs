@@ -22,10 +22,19 @@ namespace ToDo.App.Application.Handlers.ToDoList
 
         public async Task<ResultHandler<bool>> Handle(DeleteToDoListCommand request, CancellationToken cancellationToken)
         {
-            var todo = await _unitOfWork.TodoRepository.DeleteAsync(request.Id, cancellationToken);
-            var result = new ResultHandler<bool>(todo);
+            var todoList = await _unitOfWork.TodoRepository.GetAsync(x => x.Id == request.Id && x.UserId == request.UserId, cancellationToken);
+            var result = new ResultHandler<bool>(false);
+            
+            if (todoList is null)
+            {
+                result.WithMessage("Not found!");
+                return result;
+            }
 
-            if(todo)
+            var deleteResult = await _unitOfWork.TodoRepository.DeleteAsync(request.Id, cancellationToken);
+
+            result = new ResultHandler<bool>(deleteResult);
+            if (deleteResult)
                 result.WithMessage("Success!");
             else
                 result.WithMessage("Failed!");

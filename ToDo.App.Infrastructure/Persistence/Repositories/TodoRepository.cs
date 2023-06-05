@@ -20,13 +20,19 @@ namespace ToDo.App.Infrastructure.Persistence.Repositories
             await _context.TodoLists.AddAsync(toDoList);
         }
 
-        public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken)
+        public async ValueTask<bool> DeleteAsync(int id, CancellationToken cancellationToken)
         {
             var todo = await GetAsync(id, cancellationToken);
             if (todo is null)
                 return false;
             _context.Remove(todo);
             return true;
+        }
+
+        public async ValueTask<bool> DeleteAsync(ToDoList toDoList, CancellationToken cancellationToken)
+        {
+            _context.Remove(toDoList);
+            return await Task.FromResult(true);
         }
 
         public async ValueTask<ToDoList?> GetAsync(Expression<Func<ToDoList, bool>> predicate, CancellationToken cancellationToken)
