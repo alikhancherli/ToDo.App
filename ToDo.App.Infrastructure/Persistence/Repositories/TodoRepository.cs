@@ -43,6 +43,7 @@ namespace ToDo.App.Infrastructure.Persistence.Repositories
         {
             return await _context.TodoLists
                 .AsNoTracking()
+                .Include(t => t.ToDoItems)
                 .Where(predicate)
                 .ToListAsync(cancellationToken);
         }
