@@ -28,19 +28,6 @@ namespace ToDo.App.Domain.Entities
                 Reminder = reminder
             };
 
-
-        public void Edit(string title,
-            string note,
-            DateTimeOffset? reminder,
-            PriorityLevel priorityLevel)
-        {
-            Title = title;
-            Note = note;
-            Reminder = reminder;
-            PriorityLevel = priorityLevel;
-            ModifiedTimeUtc = DateTimeOffset.UtcNow;
-        }
-
         public void DoneItem() => this.Done = true;
     }
 }

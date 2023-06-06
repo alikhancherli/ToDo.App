@@ -32,6 +32,7 @@ namespace ToDo.App.Application.Handlers.ToDoList
             }
 
             var deleteResult = await _unitOfWork.TodoRepository.DeleteAsync(request.Id, cancellationToken);
+            await _unitOfWork.SaveAndDispatchEventsAsync(cancellationToken);
 
             result = new ResultHandler<bool>(deleteResult);
             if (deleteResult)

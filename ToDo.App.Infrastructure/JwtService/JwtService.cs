@@ -26,7 +26,7 @@ namespace ToDo.App.Infrastructure.JwtService
             applicationOptionsMonitor.OnChange(config => _jwtConfig = config);
         }
 
-        public async Task<AccessTokenModel> GenerateToken(User user)
+        public async Task<AccessTokenModel> GenerateTokenAsync(User user)
         {
             var secretKey = Encoding.UTF8.GetBytes(_jwtConfig.SecretKey);
             var signinCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature);
@@ -66,7 +66,8 @@ namespace ToDo.App.Infrastructure.JwtService
             var userClaims = await _signInManager.ClaimsFactory.CreateAsync(user);
             var claimsList = new List<Claim>(userClaims.Claims)
             {
-                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? "09120000000")
+                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? "09120000000"),
+                new Claim(ClaimTypes.Sid,user.Id.ToString())
             };
             return claimsList;
         }

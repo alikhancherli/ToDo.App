@@ -15,7 +15,6 @@ namespace ToDo.App.Infrastructure.Persistence
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
-
         }
 
         public DbSet<ToDoList> TodoLists => Set<ToDoList>();

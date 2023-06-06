@@ -36,7 +36,7 @@ namespace ToDo.App.Application.Handlers.Users
                     result.WithMessage(string.Join(", ", passwordResult.Errors.Select(a => a.Description)));
                     return result;
                 }
-                await _userManager.AddToRoleAsync(user, "user");
+                await _userManager.AddToRoleAsync(user, "normaluser");
                 result = new ResultHandler<UserDto>(_mapper.Map<UserDto>(user));
                 return result;
             }
