@@ -49,7 +49,7 @@ namespace ToDo.App.Api.Controllers.ToDos
                 request.Title,
                 request.Tag,
                 request.ToDoItemRequests.Select(
-                    g => ToDoItem.Create(g.Title, g.Note, g.Reminder, new PriorityLevel(g.PriorityLevel))).ToList(),
+                    g => ToDoItem.Edit(g.Id, g.Title, g.Note, g.Reminder, new PriorityLevel(g.PriorityLevel))).ToList(),
                 userId
                 ), cancellationToken);
 
@@ -77,6 +77,15 @@ namespace ToDo.App.Api.Controllers.ToDos
         public async Task<IActionResult> GetAllTodoList(int userId, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(new GetToDoListQuery(userId), cancellationToken);
+
+            return Ok(result);
+        }
+
+        [HttpPost("[action]/{id:int}")]
+        public async Task<IActionResult> DoneToDoItem(int id,Guid todoItemId,CancellationToken cancellationToken)
+        {
+            var userId = Convert.ToInt32(User.FindFirst(u => u.Type == ClaimTypes.Sid)?.Value);
+            var result = await _mediator.Send(new DoneToDoItemCommand(userId,todoItemId,id));
 
             return Ok(result);
         }

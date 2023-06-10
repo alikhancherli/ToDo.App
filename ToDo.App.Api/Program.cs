@@ -52,6 +52,7 @@ builder.Services.AddSwaggerGen(opt =>
 });
 
 var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
+//var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
 
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connectionString));
 
@@ -111,6 +112,10 @@ builder.Services.AddMediatR(opt => opt.RegisterServicesFromAssembly(typeof(AddTo
 
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+db.Database.Migrate();
 
 await app.InitializeData(app.Services);
 

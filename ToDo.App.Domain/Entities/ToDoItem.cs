@@ -28,6 +28,21 @@ namespace ToDo.App.Domain.Entities
                 Reminder = reminder
             };
 
+        public static ToDoItem Edit(
+            Guid id,
+            string title,
+            string note,
+            DateTimeOffset? reminder,
+            PriorityLevel priorityLevel) =>
+            new ToDoItem()
+            {
+                Id = id,
+                PriorityLevel = priorityLevel,
+                Title = title,
+                Note = note,
+                Reminder = reminder
+            };
+
         public void DoneItem() => this.Done = true;
     }
 }

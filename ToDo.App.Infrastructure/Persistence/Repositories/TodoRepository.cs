@@ -37,7 +37,7 @@ namespace ToDo.App.Infrastructure.Persistence.Repositories
 
         public async ValueTask<ToDoList?> GetAsync(Expression<Func<ToDoList, bool>> predicate, CancellationToken cancellationToken)
         {
-            return await _context.TodoLists.AsNoTracking().SingleOrDefaultAsync(predicate, cancellationToken);
+            return await _context.TodoLists.AsNoTracking().Include(a=>a.ToDoItems).SingleOrDefaultAsync(predicate, cancellationToken);
         }
 
         public async ValueTask<ToDoList?> GetAsync(int id, CancellationToken cancellationToken)
