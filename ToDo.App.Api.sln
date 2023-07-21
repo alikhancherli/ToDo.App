@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.App.Api", "ToDo.App.Api\ToDo.App.Api.csproj", "{DF959AA5-CAF6-4F86-BEC6-53A063543CF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.App.Api", "ToDo.App.Api\ToDo.App.Api.csproj", "{DF959AA5-CAF6-4F86-BEC6-53A063543CF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.App.Domain", "ToDo.App.Domain\ToDo.App.Domain.csproj", "{AA3D5046-925D-445C-AAEA-1290EAC88525}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.App.Domain", "ToDo.App.Domain\ToDo.App.Domain.csproj", "{AA3D5046-925D-445C-AAEA-1290EAC88525}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.App.Application", "ToDo.App.Application\ToDo.App.Application.csproj", "{F8B5B2C1-0A73-46CF-93AF-EA3CC289330A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.App.Application", "ToDo.App.Application\ToDo.App.Application.csproj", "{F8B5B2C1-0A73-46CF-93AF-EA3CC289330A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.App.Infrastructure", "ToDo.App.Infrastructure\ToDo.App.Infrastructure.csproj", "{93F494CA-DB1A-49A3-8FC6-E3F73E13283A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.App.Infrastructure", "ToDo.App.Infrastructure\ToDo.App.Infrastructure.csproj", "{93F494CA-DB1A-49A3-8FC6-E3F73E13283A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.App.Test", "ToDo.App.Test\ToDo.App.Test.csproj", "{728AB800-9858-4F5F-8992-F97459CAE1A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.App.Test", "ToDo.App.Test\ToDo.App.Test.csproj", "{728AB800-9858-4F5F-8992-F97459CAE1A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.App.Shared", "ToDo.App.Shared\ToDo.App.Shared.csproj", "{583FAC89-E996-4B4B-99EF-83A09915FDFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.App.Shared", "ToDo.App.Shared\ToDo.App.Shared.csproj", "{583FAC89-E996-4B4B-99EF-83A09915FDFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.App.Auth", "ToDo.App.Auth\ToDo.App.Auth.csproj", "{858C64A2-7FB7-4253-AF6E-9FD6516E23F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{583FAC89-E996-4B4B-99EF-83A09915FDFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{583FAC89-E996-4B4B-99EF-83A09915FDFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{583FAC89-E996-4B4B-99EF-83A09915FDFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{858C64A2-7FB7-4253-AF6E-9FD6516E23F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{858C64A2-7FB7-4253-AF6E-9FD6516E23F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{858C64A2-7FB7-4253-AF6E-9FD6516E23F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{858C64A2-7FB7-4253-AF6E-9FD6516E23F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

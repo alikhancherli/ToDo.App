@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -12,7 +13,7 @@ namespace ToDo.App.Api.Controllers.ToDos
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = "Bearer")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ToDoController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -73,11 +74,10 @@ namespace ToDo.App.Api.Controllers.ToDos
             return Ok(result);
         }
 
-        [HttpGet("/all")]
+        [HttpGet("all")]
         public async Task<IActionResult> GetAllTodoList(int userId, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(new GetToDoListQuery(userId), cancellationToken);
-
             return Ok(result);
         }
 

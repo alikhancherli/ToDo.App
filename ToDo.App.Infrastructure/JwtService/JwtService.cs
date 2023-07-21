@@ -57,7 +57,9 @@ namespace ToDo.App.Infrastructure.JwtService
             return new AccessTokenModel()
             {
                 AccessToken = tokenHandler.WriteToken(securityToken),
-                ExpirationTime = securityToken.ValidTo.ToLocalTime()
+                ExpirationTime = securityToken.ValidTo.ToLocalTime(),
+
+                UserClaims = GetUserClaims(claims)
             };
         }
 
@@ -96,6 +98,17 @@ namespace ToDo.App.Infrastructure.JwtService
             {
                 return false;
             }
+        }
+
+        private UserClaims GetUserClaims(IEnumerable<Claim> claims)
+        {
+            return new()
+            {
+                Id = claims.FirstOrDefault(a => a.Type == ClaimTypes.Sid)!.Value,
+                Email = claims.FirstOrDefault(a => a.Type == ClaimTypes.Email)!.Value,
+                PhoneNumber = claims.FirstOrDefault(a => a.Type == ClaimTypes.MobilePhone)!.Value,
+                Username = claims.FirstOrDefault(a => a.Type == ClaimTypes.Name)!.Value
+            };
         }
     }
 }

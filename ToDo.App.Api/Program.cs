@@ -104,12 +104,31 @@ builder.Services.AddIdentity<User, Role>(opt =>
     opt.Password.RequireUppercase = false;
 }).AddEntityFrameworkStores<AppDbContext>();
 
+//builder.Services.AddAuthentication("Bearer")
+//            .AddJwtBearer("Bearer", options =>
+//            {
+//                options.Authority = "https://localhost:7178";
+
+//                options.TokenValidationParameters = new TokenValidationParameters
+//                {
+//                    ValidateAudience = false
+//                };
+//            });
+
 builder.Services.AddScoped<ISeedData, SeedData>();
 builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddMapper();
 builder.Services.AddMediatR(opt => opt.RegisterServicesFromAssembly(typeof(AddToDoListCommand).Assembly));
 
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("my-policy", cfg =>
+    {
+
+        cfg.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+    });
+});
 
 var app = builder.Build();
 
@@ -125,6 +144,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("my-policy");
 
 app.UseHttpsRedirection();
 

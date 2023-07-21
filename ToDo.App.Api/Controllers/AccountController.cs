@@ -7,6 +7,7 @@ using ToDo.App.Api.Models;
 using ToDo.App.Application.Commands.User;
 using ToDo.App.Application.JwtService;
 using ToDo.App.Domain.Entities;
+using ToDo.App.Infrastructure.Extensions;
 
 namespace ToDo.App.Api.Controllers
 {
@@ -61,6 +62,15 @@ namespace ToDo.App.Api.Controllers
             var result = await _mediator.Send(new UpdateUserCommand(userId, request.Email, request.FirstName, request.LastName), cancellationToken);
 
             return Ok(result);
+        }
+
+        [HttpGet("claims")]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        public async Task<IActionResult> GetClaims()
+        {
+            var user = User.ToIdentityClaims();
+
+            return Ok(user);
         }
     }
 }
